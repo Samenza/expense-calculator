@@ -1,6 +1,6 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import AlertNotification from "./AlertNotification";
+import AlertNotification from "../AlertNotification";
 
 const AddExpenseItem = () => {
   const [alert, setAlert] = useState({ show: false });

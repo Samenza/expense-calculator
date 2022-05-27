@@ -2,7 +2,6 @@ import React from "react";
 import { Snackbar, Alert } from "@mui/material";
 
 const AlertNotification = ({ status, setStatus }) => {
-  console.log(`status`, status);
   return (
     <Snackbar
       open={status.show}

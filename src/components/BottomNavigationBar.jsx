@@ -4,11 +4,15 @@ import PostAddIcon from "@mui/icons-material/PostAdd";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function BottomNavigationBar() {
-  const [value, setValue] = useState("expense");
+  const { pathname } = useLocation();
+  const [value, setValue] = useState(
+    pathname.replace("/", "") || "expense-list"
+  );
   const navigate = useNavigate();
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -25,14 +29,14 @@ export default function BottomNavigationBar() {
       onChange={handleChange}
     >
       <BottomNavigationAction
-        label="لیست کاربران"
-        value="users"
+        label=" پرداخت کنندگان"
+        value="subscriber"
         icon={<AssignmentIndIcon fontSize="large" />}
-        onClick={() => navigate("/users")}
+        onClick={() => navigate("/subscriber")}
       />
       <BottomNavigationAction
         label="هزینه ها"
-        value="expense"
+        value="expense-list"
         icon={<PostAddIcon fontSize="large" />}
         onClick={() => navigate("/expense-list")}
       />
