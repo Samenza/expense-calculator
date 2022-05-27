@@ -2,8 +2,8 @@ import AddIcon from "@mui/icons-material/Add";
 import { Box, Fab, Stack, Zoom } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ExpenseListItems from "./ExpenseListItems";
-import { api } from "../../configs/axiosConfigs";
+import ExpenseListItems from "../components/expense/ExpenseListItems";
+import { api } from "../configs/axiosConfigs";
 
 const ExpenseList = () => {
   const navigate = useNavigate();
@@ -24,13 +24,14 @@ const ExpenseList = () => {
           sx={{
             alignItems: "center",
             gap: "0.75rem",
-            height: "77%",
+            height: "75%",
             overflowY: "auto",
           }}
         >
           {listData.map((item) => {
             return (
               <ExpenseListItems
+                key={item.id}
                 name={item.payer?.name}
                 title={item.title}
                 price={item.price}

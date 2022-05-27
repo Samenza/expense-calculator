@@ -5,9 +5,11 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useTheme } from "@emotion/react";
 
 export default function BottomNavigationBar() {
   const { pathname } = useLocation();
+  const { palette } = useTheme();
   const [value, setValue] = useState(
     pathname.replace("/", "") || "expense-list"
   );

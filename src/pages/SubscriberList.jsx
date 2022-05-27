@@ -2,8 +2,9 @@ import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { Box, Fab, Stack, Zoom } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SubscriberItem from "./SubscriberItem";
-import { api } from "../../configs/axiosConfigs";
+import SubscriberItem from "../components/subscriber/SubscriberItem";
+import { api } from "../configs/axiosConfigs";
+
 const SubscriberList = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -22,7 +23,7 @@ const SubscriberList = () => {
         sx={{
           alignItems: "center",
           gap: "0.75rem",
-          height: "77%",
+          height: "75%",
           overflowY: "auto",
         }}
       >

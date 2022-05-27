@@ -14,7 +14,6 @@ const Home = () => {
         flexDirection: "column",
       }}
     >
-      {" "}
       <Box sx={{ height: window.innerHeight - 80, position: "relative" }}>
         <Outlet />
       </Box>

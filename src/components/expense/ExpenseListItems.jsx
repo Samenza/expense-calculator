@@ -1,8 +1,11 @@
+import { useTheme } from "@emotion/react";
 import { Paper, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
 const ExpenseListItems = ({ name, title, price }) => {
+  const { palette } = useTheme();
+  console.log(`palette`, palette);
   return (
     <Paper
       sx={{
@@ -11,24 +14,27 @@ const ExpenseListItems = ({ name, title, price }) => {
         height: "4.5rem",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "#e7f8ff",
+        backgroundColor: palette.secondaryLight.main,
         padding: " 0 10px",
       }}
     >
       <Stack sx={{ gap: "0.5rem", padding: "10px", width: "100%" }}>
-        <Typography variant="body1">{title} </Typography>
+        {name && <Typography variant="h6">{title} </Typography>}
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography
-            sx={{
-              backgroundColor: "#3ca69a",
-              padding: "2px 8px",
-              borderRadius: "5px",
-              color: "#e0f6fa",
-            }}
-            variant="subtitle2"
-          >
-            {name}
-          </Typography>
+          {!name && <Typography variant="h6">{title} </Typography>}
+          {name && (
+            <Typography
+              sx={{
+                backgroundColor: palette.primaryLight.main,
+                color: palette.primaryLight.contrastText,
+                padding: "2px 8px",
+                borderRadius: "5px",
+              }}
+              variant="subtitle2"
+            >
+              {name}
+            </Typography>
+          )}
 
           <Typography
             sx={{

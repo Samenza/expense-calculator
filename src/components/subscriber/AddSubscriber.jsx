@@ -10,6 +10,7 @@ const AddSubscriber = () => {
   function postSubscriber(value) {
     api.post("subscriber", { name: value }).then((res) => {
       setAlert({ show: true });
+      setData([]);
     });
   }
   function validation(onSuccess) {
@@ -60,6 +61,7 @@ const AddSubscriber = () => {
           label="نام"
           variant="outlined"
           helperText={error && "لطفا نام را وارد کنید!"}
+          value={data}
         />
 
         <Button

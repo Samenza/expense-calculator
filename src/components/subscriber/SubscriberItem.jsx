@@ -1,10 +1,12 @@
-import { IconButton, Paper, Stack, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import { IconButton, Paper, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import React from "react";
 import { api } from "../../configs/axiosConfigs";
+import { useNavigate } from "react-router-dom";
 const SubscriberItem = ({ item: { id, name }, index, getListData }) => {
+  const navigate = useNavigate();
   function deleteItem() {
     api.delete(`subscriber/${id}`).then(() => {
       getListData();
@@ -20,6 +22,9 @@ const SubscriberItem = ({ item: { id, name }, index, getListData }) => {
         alignItems: "center",
         backgroundColor: "#e7f8ff",
         padding: " 0 10px",
+      }}
+      onClick={() => {
+        navigate(`${id}`);
       }}
     >
       <Box
@@ -67,15 +72,6 @@ const SubscriberItem = ({ item: { id, name }, index, getListData }) => {
           >
             <DeleteIcon />
           </IconButton>
-          {/* 
-            <Box
-              sx={{
-                backgroundColor: "#e63946",
-                borderRadius: "5px",
-                color: "#f1faee",
-                padding: "5px",
-              }}
-            ></Box> */}
         </Box>
       </Box>
     </Paper>
