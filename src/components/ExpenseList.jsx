@@ -8,12 +8,54 @@ const ExpenseList = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Stack sx={{ height: "100%", overflowY: "scroll" }}>
+      <Stack sx={{ height: "100%", overflowY: "auto" }}>
         <Box sx={{ height: "10vh" }}></Box>
         <Stack sx={{ alignItems: "center", gap: "1rem" }}>
           <ExpenseListItems
-            name=" حسین کونیه"
-            title="توانا بود هرکه دانا بود ز کصکشی دل کیر برنا شود"
+            name="حسین"
+            title="خرید میوه و تره بار"
+            price="12.000"
+          />
+          <ExpenseListItems name="سعید" title="کباب کوبیده" price="23.000" />
+          <ExpenseListItems
+            name="حسین"
+            title="خرید میوه و تره بار"
+            price="12.000"
+          />
+          <ExpenseListItems name="سعید" title="کباب کوبیده" price="23.000" />
+          <ExpenseListItems
+            name="حسین"
+            title="خرید میوه و تره بار"
+            price="12.000"
+          />
+          <ExpenseListItems name="سعید" title="کباب کوبیده" price="23.000" />
+          <ExpenseListItems
+            name="حسین"
+            title="خرید میوه و تره بار"
+            price="12.000"
+          />
+          <ExpenseListItems name="سعید" title="کباب کوبیده" price="23.000" />
+          <ExpenseListItems
+            name="حسین"
+            title="خرید میوه و تره بار"
+            price="12.000"
+          />
+          <ExpenseListItems name="سعید" title="کباب کوبیده" price="23.000" />
+          <ExpenseListItems
+            name="حسین"
+            title="خرید میوه و تره بار"
+            price="12.000"
+          />
+          <ExpenseListItems name="سعید" title="کباب کوبیده" price="23.000" />
+          <ExpenseListItems
+            name="حسین"
+            title="خرید میوه و تره بار"
+            price="12.000"
+          />
+          <ExpenseListItems name="سعید" title="کباب کوبیده" price="23.000" />
+          <ExpenseListItems
+            name="حسین"
+            title="خرید میوه و تره بار"
             price="12.000"
           />
           <ExpenseListItems name="سعید" title="کباب کوبیده" price="23.000" />
