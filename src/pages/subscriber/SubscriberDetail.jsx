@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useTheme } from "@emotion/react";
 import { Button, Stack, Typography } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { Box } from "@mui/system";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ExpenseListItems from "../../components/expense/ExpenseListItems";
 import { api } from "../../configs/axiosConfigs";
-import { useParams } from "react-router-dom";
 
 const SubscriberDetail = () => {
   const { id } = useParams();
   const [listData, setListData] = useState([]);
+  const theme = useTheme();
   function getSubscriberDetailList() {
     api.get(`expense/subscriber/${id}`).then((res) => {
       setListData(res.data);
@@ -31,11 +33,16 @@ const SubscriberDetail = () => {
           mt: "2rem",
           padding: "2rem",
           borderRadius: "10px",
-          backgroundColor: "#80DEEA",
+          backgroundColor: theme.palette.secondary.main,
           textAlign: "center",
         }}
       >
-        <Typography variant="h5">{listData[0]?.payer?.name}</Typography>
+        <Typography
+          sx={(theme) => ({ color: theme.palette.darkBlue.main })}
+          variant="h5"
+        >
+          {listData[0]?.payer?.name}
+        </Typography>
       </Box>
       <Stack
         sx={{
@@ -65,13 +72,7 @@ const SubscriberDetail = () => {
           }}
         >
           {listData.map((item) => {
-            return (
-              <ExpenseListItems
-                key={item.id}
-                title={item.title}
-                price={item.price}
-              />
-            );
+            return <ExpenseListItems key={item.id} item={item} />;
           })}
         </Stack>
       </Stack>

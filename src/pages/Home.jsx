@@ -12,6 +12,7 @@ const Home = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "#F1FAEE",
       }}
     >
       <Box sx={{ height: window.innerHeight - 80, position: "relative" }}>

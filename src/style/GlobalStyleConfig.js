@@ -20,22 +20,24 @@ let theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#108299",
+      main: "#457B9D",
     },
     primaryLight: {
-      main: "#26A69A",
+      main: "#6DC2C5",
       contrastText: "#E0F7FA",
     },
     secondary: {
-      main: "#80DEEA",
+      main: "#92D2D1",
     },
     secondaryLight: {
-      main: "#e7f8ff",
+      main: "#B7E1DD",
     },
-    darkBlue: { main: "#023e8a" },
+    darkBlue: { main: "#1D3557" },
+    lightBlue: { main: "#457B9D" },
     error: {
-      main: "#e63946",
+      main: "#E63946",
     },
+    pink: { main: "#E26565" },
 
     contrastThreshold: 3,
     tonalOffset: 0.2,

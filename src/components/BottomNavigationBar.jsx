@@ -21,12 +21,12 @@ export default function BottomNavigationBar() {
 
   return (
     <BottomNavigation
-      sx={{
+      sx={(theme) => ({
         width: "100%",
         height: "5rem",
-        backgroundColor: "#80DEEA",
+        backgroundColor: theme.palette.secondary.main,
         borderRadius: "15px  15px 0 0",
-      }}
+      })}
       value={value}
       onChange={handleChange}
     >

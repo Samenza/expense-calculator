@@ -12,6 +12,7 @@ const MainRoute = () => {
     <Routes>
       <Route element={<Home />}>
         <Route index path="/expense-list" element={<ExpenseList />} />
+        <Route index path="/expense-list/:id" element={<AddExpenseItem />} />
         <Route index path="/subscriber" element={<SubscriberList />} />
         <Route index path="/subscriber/:id" element={<SubscriberDetail />} />
         <Route index path="/add-item" element={<AddExpenseItem />} />

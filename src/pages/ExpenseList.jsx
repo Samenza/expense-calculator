@@ -8,6 +8,8 @@ import { api } from "../configs/axiosConfigs";
 const ExpenseList = () => {
   const navigate = useNavigate();
   const [listData, setListData] = useState([]);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
   function getListData() {
     api.get("expense").then((res) => {
       setListData(res.data);
@@ -32,9 +34,8 @@ const ExpenseList = () => {
             return (
               <ExpenseListItems
                 key={item.id}
-                name={item.payer?.name}
-                title={item.title}
-                price={item.price}
+                item={item}
+                getListData={getListData}
               />
             );
           })}

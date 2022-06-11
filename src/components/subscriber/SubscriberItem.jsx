@@ -2,8 +2,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import { IconButton, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
 import { api } from "../../configs/axiosConfigs";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 const SubscriberItem = ({ item: { id, name }, index, getListData }) => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const SubscriberItem = ({ item: { id, name }, index, getListData }) => {
         justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: "#e7f8ff",
-        padding: " 0 10px",
+        padding: " 0 10px ",
       }}
       onClick={() => {
         navigate(`${id}`);
@@ -37,14 +37,14 @@ const SubscriberItem = ({ item: { id, name }, index, getListData }) => {
       >
         {" "}
         <Typography
-          sx={{
-            backgroundColor: "#264653",
+          sx={(theme) => ({
+            backgroundColor: theme.palette.lightBlue.main,
             borderRadius: "5px",
             color: "#e0f6fa",
             textAlign: "center",
             width: "24px",
             padding: "4px",
-          }}
+          })}
           variant="h6"
         >
           {" "}
@@ -67,8 +67,14 @@ const SubscriberItem = ({ item: { id, name }, index, getListData }) => {
             <ModeEditOutlineIcon />
           </IconButton>
           <IconButton
-            onClick={() => deleteItem()}
-            sx={{ color: "#f1faee", backgroundColor: "#e63946" }}
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteItem();
+            }}
+            sx={(theme) => ({
+              color: "#f1faee",
+              backgroundColor: theme.palette.error.main,
+            })}
           >
             <DeleteIcon />
           </IconButton>

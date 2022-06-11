@@ -9,11 +9,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import AlertNotification from "../AlertNotification";
 import { api } from "../../configs/axiosConfigs";
+import React, { useEffect, useState } from "react";
+import AlertNotification from "../AlertNotification";
+import { useParams } from "react-router-dom";
 
 const AddExpenseItem = () => {
+  const { id } = useParams();
   const [alert, setAlert] = useState({ show: false });
   const [formData, setFormData] = useState({
     title: "",
@@ -42,6 +44,14 @@ const AddExpenseItem = () => {
       setFormData({ title: "", price: "", payerId: "" });
     });
   }
+  function putFormData(formData) {
+    let data = { ...formData };
+    delete data.payerId;
+    api.put(`expense/${id}`, data).then((res) => {
+      setAlert({ show: true });
+      setFormData({ title: "", price: "", payerId: "" });
+    });
+  }
   function validation(onSuccess) {
     let formDataValidation = false;
 
@@ -61,6 +71,19 @@ const AddExpenseItem = () => {
       setError(formDataValidation);
     }
   }
+
+  useEffect(() => {
+    if (id) {
+      getPayerOption();
+      api.get(`expense/${id}`).then((res) => {
+        setFormData({
+          title: res.data.title,
+          price: res.data.price,
+          payerId: res.data.payer.id,
+        });
+      });
+    }
+  }, []);
   return (
     <Stack
       sx={{
@@ -93,8 +116,7 @@ const AddExpenseItem = () => {
             mb: "1rem",
           }}
         >
-          {" "}
-          افزودن هزینه جدید{" "}
+          {id ? "افزودن هزینه جدید" : "ویرایش"}
         </Typography>
         <TextField
           onChange={(e) => {
@@ -150,6 +172,7 @@ const AddExpenseItem = () => {
               }
             }}
           >
+            <MenuItem value={""}></MenuItem>
             {payerOptions?.map((payer) => {
               return (
                 <MenuItem key={payer.id} value={payer.id}>
@@ -166,7 +189,7 @@ const AddExpenseItem = () => {
           sx={{ width: "90%", padding: "14px" }}
           color="primary"
           variant="contained"
-          onClick={() => validation(postFormData)}
+          onClick={() => validation(id ? putFormData : postFormData)}
         >
           افزودن +
         </Button>
