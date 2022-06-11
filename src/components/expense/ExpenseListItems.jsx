@@ -16,23 +16,25 @@ import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import MoreVert from "@mui/icons-material/MoreVert";
 import Flex from "../Flex";
 import { useNavigate } from "react-router-dom";
+import ConfirmationModal from "../ConfirmationModal";
 
 const ExpenseListItems = ({
   item: { payer, title, price, id },
   getListData,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openModal, setOpenModal] = React.useState(false);
   const navigate = useNavigate();
   const { palette } = useTheme();
   function deleteExpense() {
     api.delete(`expense/${id}`).then((res) => {
+      setOpenModal(false);
       getListData();
     });
   }
 
   const open = Boolean(anchorEl);
 
-  console.log(`payer.name`, payer?.name);
   return (
     <Paper
       sx={{
@@ -122,7 +124,8 @@ const ExpenseListItems = ({
               <IconButton
                 onClick={(e) => {
                   e.stopPropagation();
-                  deleteExpense();
+                  setOpenModal(true);
+                  setAnchorEl();
                 }}
                 sx={(theme) => ({
                   color: "#f1faee",
@@ -135,7 +138,12 @@ const ExpenseListItems = ({
             </Stack>
           </Popover>
         </Box>
-      </Stack>
+      </Stack>{" "}
+      <ConfirmationModal
+        open={openModal}
+        setOpen={setOpenModal}
+        agree={deleteExpense}
+      />
     </Paper>
   );
 };

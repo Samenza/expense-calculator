@@ -3,6 +3,7 @@ import { CacheProvider, ThemeProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import { createTheme } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
 
 let theme = createTheme({
   direction: "rtl",
@@ -28,6 +29,7 @@ let theme = createTheme({
     },
     secondary: {
       main: "#92D2D1",
+      dark: "#92D2D1",
     },
     secondaryLight: {
       main: "#B7E1DD",
@@ -50,6 +52,15 @@ theme = createTheme(theme, {
         root: {
           "&.Mui-selected": {
             color: theme.palette.darkBlue.main,
+          },
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor:"in",
           },
         },
       },
