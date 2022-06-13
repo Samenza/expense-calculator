@@ -143,6 +143,7 @@ const ExpenseListItems = ({
         open={openModal}
         setOpen={setOpenModal}
         agree={deleteExpense}
+        title=" این مورد حذف شود؟"
       />
     </Paper>
   );

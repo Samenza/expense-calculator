@@ -1,13 +1,17 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import { GlobalStyleConfig } from "./style/GlobalStyleConfig";
 import MainRoute from "./routes/MainRoute";
+import { GlobalStyleConfig } from "./style/GlobalStyleConfig";
+import NotificationContextProvider from "./context/NotificationContextProvider";
+
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyleConfig>
-        <MainRoute />
+        <NotificationContextProvider>
+          <MainRoute />
+        </NotificationContextProvider>
       </GlobalStyleConfig>
     </BrowserRouter>
   );

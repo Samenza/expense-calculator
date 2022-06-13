@@ -1,17 +1,28 @@
 import React from "react";
 import { Snackbar, Alert } from "@mui/material";
+import { useNotificationContext } from "../context/NotificationContextProvider";
 
-const AlertNotification = ({ status, setStatus }) => {
+const AlertNotification = () => {
+  const { notification, setNotification } = useNotificationContext();
+
   return (
     <Snackbar
-      open={status.show}
+      open={notification.show}
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      onClose={() => setStatus({ show: false })}
+      onClose={() =>
+        setNotification((prev) => {
+          return { ...prev, show: false };
+        })
+      }
       autoHideDuration={2000}
       message="Archived"
     >
-      <Alert sx={{ minWidth: "40%" }} variant="outlined" severity="success">
-        با موفقیت اضافه شد!
+      <Alert
+        sx={{ minWidth: "40%" }}
+        variant="outlined"
+        severity={notification.severity}
+      >
+        {notification.message ?? "با موفقیت اضافه شد!"}
       </Alert>
     </Snackbar>
   );

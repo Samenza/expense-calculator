@@ -1,15 +1,17 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { api } from "../../configs/axiosConfigs";
-import AlertNotification from "../AlertNotification";
+import { useNotificationContext } from "../../context/NotificationContextProvider";
 
 const AddSubscriber = () => {
-  const [alert, setAlert] = useState({ show: false });
   const [data, setData] = useState();
   const [error, setError] = useState(false);
+  const { setNotification } = useNotificationContext();
   function postSubscriber(value) {
     api.post("subscriber", { name: value }).then((res) => {
-      setAlert({ show: true });
+      setNotification({
+        show: true,
+      });
       setData([]);
     });
   }
@@ -72,7 +74,6 @@ const AddSubscriber = () => {
           افزودن
         </Button>
       </Stack>
-      <AlertNotification status={alert} setStatus={setAlert} />
     </Stack>
   );
 };

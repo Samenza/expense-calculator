@@ -11,12 +11,11 @@ import {
 } from "@mui/material";
 import { api } from "../../configs/axiosConfigs";
 import React, { useEffect, useState } from "react";
-import AlertNotification from "../AlertNotification";
 import { useParams } from "react-router-dom";
+import { useNotificationContext } from "../../context/NotificationContextProvider";
 
 const AddExpenseItem = () => {
   const { id } = useParams();
-  const [alert, setAlert] = useState({ show: false });
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -28,10 +27,12 @@ const AddExpenseItem = () => {
     price: true,
     payerId: true,
   });
+  const { setNotification } = useNotificationContext();
 
   function getPayerOption() {
     api.get("subscriber").then((res) => setPayersOptions(res.data));
   }
+
   function formOnChange(value, name) {
     setFormData((prev) => {
       return { ...prev, [name]: value.target.value };
@@ -40,7 +41,7 @@ const AddExpenseItem = () => {
 
   function postFormData(formData) {
     api.post("expense", formData).then((res) => {
-      setAlert({ show: true });
+      setNotification({ show: true });
       setFormData({ title: "", price: "", payerId: "" });
     });
   }
@@ -48,7 +49,7 @@ const AddExpenseItem = () => {
     let data = { ...formData };
     delete data.payerId;
     api.put(`expense/${id}`, data).then((res) => {
-      setAlert({ show: true });
+      setNotification({ show: true });
       setFormData({ title: "", price: "", payerId: "" });
     });
   }
@@ -194,7 +195,6 @@ const AddExpenseItem = () => {
           افزودن +
         </Button>
       </Stack>
-      <AlertNotification status={alert} setStatus={setAlert} />
     </Stack>
   );
 };
