@@ -1,20 +1,24 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { api } from "../../configs/axiosConfigs";
 import { useNotificationContext } from "../../context/NotificationContextProvider";
+import { useParams } from "react-router-dom";
 
 const AddSubscriber = () => {
-  const [data, setData] = useState();
+  const { id } = useParams();
+  const [data, setData] = useState("");
   const [error, setError] = useState(false);
   const { setNotification } = useNotificationContext();
+
   function postSubscriber(value) {
     api.post("subscriber", { name: value }).then((res) => {
       setNotification({
         show: true,
       });
-      setData([]);
+      setData();
     });
   }
+
   function validation(onSuccess) {
     if (data) {
       onSuccess(data);
@@ -23,6 +27,15 @@ const AddSubscriber = () => {
       setError(true);
     }
   }
+
+  function getSubscriber() {
+    api.get(`subscriber/${id}`).then((res) => setData(res.data.name));
+  }
+  useEffect(() => {
+    getSubscriber();
+    setData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Stack
       sx={{
@@ -41,6 +54,7 @@ const AddSubscriber = () => {
           padding: "7vh 1rem",
           borderRadius: "10px",
         }}
+        bgcolor={"greenLight.main"}
       >
         <Typography
           variant="body1"

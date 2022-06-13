@@ -17,6 +17,7 @@ const MainRoute = () => {
         <Route index path="/subscriber/:id" element={<SubscriberDetail />} />
         <Route index path="/add-item" element={<AddExpenseItem />} />
         <Route index path="/add-subscriber" element={<AddSubscriber />} />
+        <Route index path="/add-subscriber/:id" element={<AddSubscriber />} />
       </Route>
       <Route path="*" element={<Navigate to={"/expense-list"} />} />
     </Routes>

@@ -78,6 +78,7 @@ const SubscriberItem = ({ item: { id, name }, index, getListData }) => {
               }}
               onClick={(e) => {
                 e.stopPropagation();
+                navigate(`/add-subscriber/${id}`);
               }}
             >
               <ModeEditOutlineIcon />
