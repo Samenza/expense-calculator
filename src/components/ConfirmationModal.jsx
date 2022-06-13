@@ -8,7 +8,7 @@ import * as React from "react";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const ConfirmationModal = ({ open, setOpen, agree, disagree }) => {
+const ConfirmationModal = ({ open, setOpen, agree, disagree, title }) => {
   const handleClose = () => {
     setOpen(false);
   };
@@ -22,7 +22,7 @@ const ConfirmationModal = ({ open, setOpen, agree, disagree }) => {
     >
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description">
-          این مورد حذف شود؟
+          {title}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
