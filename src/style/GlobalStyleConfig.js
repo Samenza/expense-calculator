@@ -21,22 +21,25 @@ let theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#457B9D",
+      main: "#74c69d",
     },
     primaryLight: {
       main: "#6DC2C5",
       contrastText: "#E0F7FA",
     },
     secondary: {
-      main: "#92D2D1",
-      dark: "#92D2D1",
+      main: "#8e8e8e",
+      dark: "#265077",
+      contrastText: "#fff",
     },
     secondaryLight: {
-      main: "#B7E1DD",
+      main: "#f2f2f2",
+      contrastText: "#fff",
     },
+
     darkBlue: { main: "#1D3557" },
     lightBlue: { main: "#457B9D" },
-    greenLight: { main: "#f4fff1c9" },
+    greenLight: { main: "#4f9480" },
     error: {
       main: "#E63946",
     },
@@ -52,8 +55,10 @@ theme = createTheme(theme, {
       styleOverrides: {
         root: {
           "&.Mui-selected": {
-            color: theme.palette.darkBlue.main,
+            // color: theme.palette.darkBlue.main,
+            color: "#fff",
           },
+          color: "#fff",
         },
       },
     },

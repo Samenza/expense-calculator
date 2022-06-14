@@ -27,15 +27,15 @@ const SubscriberItem = ({ item: { id, name }, index, getListData }) => {
   return (
     <>
       <Paper
-        sx={{
+        sx={(theme) => ({
           display: "flex",
           width: "85%",
           minHeight: "4.5rem",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor: "#e7f8ff",
+          backgroundColor: theme.palette.secondaryLight.main,
           padding: " 0 10px ",
-        }}
+        })}
         onClick={() => {
           navigate(`${id}`);
         }}

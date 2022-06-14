@@ -57,7 +57,7 @@ const SubscriberDetail = () => {
           }}
         >
           <Typography
-            sx={(theme) => ({ color: theme.palette.darkBlue.main })}
+            sx={(theme) => ({ color: theme.palette.secondaryLight.main })}
             variant="h5"
           >
             {subscriber?.name}

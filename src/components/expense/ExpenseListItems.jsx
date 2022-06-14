@@ -47,14 +47,31 @@ const ExpenseListItems = ({
       }}
     >
       <Stack sx={{ gap: "0.5rem", padding: "10px", width: "100%" }}>
-        {payer?.name && <Typography variant="body1">{title}</Typography>}
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          {!payer?.name && <Typography variant="body1">{title}</Typography>}
+        {payer?.name && (
+          <Typography sx={{ color: palette.darkBlue.main }} variant="h6">
+            {title}
+          </Typography>
+        )}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {!payer?.name && (
+            <Typography
+              sx={{ color: palette.secondaryLight.contrastText }}
+              variant="h6"
+            >
+              {title}
+            </Typography>
+          )}
           {payer?.name && (
             <Typography
               sx={{
-                backgroundColor: palette.secondary.main,
-                color: palette.darkBlue.main,
+                backgroundColor: palette.greenLight.main,
+                color: palette.secondaryLight.contrastText,
                 padding: "5px 8px",
                 borderRadius: "5px",
               }}
@@ -63,7 +80,7 @@ const ExpenseListItems = ({
               {payer?.name}
             </Typography>
           )}
-          <Flex>
+          <Flex sx={{ alignItems: "center" }}>
             <Typography
               sx={{
                 backgroundColor: palette.pink.main,
@@ -128,7 +145,7 @@ const ExpenseListItems = ({
                   setAnchorEl();
                 }}
                 sx={(theme) => ({
-                  color: "#f1faee",
+                  color: palette.darkBlue.main,
                   backgroundColor: theme.palette.error.main,
                   borderRadius: "5px",
                 })}

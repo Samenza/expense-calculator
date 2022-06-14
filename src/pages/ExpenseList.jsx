@@ -72,6 +72,6 @@ const classes = {
     width: "4rem",
     height: "4rem",
     color: "#E0F7FA",
-    backgroundColor: "#26A69A",
+    backgroundColor: "#4f9480",
   },
 };

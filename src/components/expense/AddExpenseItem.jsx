@@ -95,27 +95,27 @@ const AddExpenseItem = () => {
       }}
     >
       <Stack
-        sx={{
+        sx={(theme) => ({
           width: "80%",
           alignItems: "center",
           gap: "1rem",
           border: "1px solid #77D8BE",
           padding: "7vh 1rem",
           borderRadius: "10px",
-          backgroundColor: "#f6fffd",
-        }}
+          backgroundColor: theme.palette.secondaryLight.main,
+        })}
       >
         <Typography
           variant="body1"
-          sx={{
+          sx={(theme) => ({
             width: "90%",
-            backgroundColor: "#C7FCEC",
+            backgroundColor: theme.palette.primary.main,
             padding: "14px 13px",
             boxSizing: "border-box",
             borderRadius: "4px",
             textAlign: "center",
             mb: "1rem",
-          }}
+          })}
         >
           {id ? "افزودن هزینه جدید" : "ویرایش"}
         </Typography>
@@ -188,7 +188,7 @@ const AddExpenseItem = () => {
         </FormControl>
         <Button
           sx={{ width: "90%", padding: "14px" }}
-          color="primary"
+          color="greenLight"
           variant="contained"
           onClick={() => validation(id ? putFormData : postFormData)}
         >
