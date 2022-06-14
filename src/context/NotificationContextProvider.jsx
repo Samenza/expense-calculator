@@ -4,7 +4,7 @@ const notificationContext = createContext();
 const NotificationContextProvider = (props) => {
   const [notification, setNotification] = useState({
     show: false,
-    message: "",
+    message: "با موفقیت اضافه شد!",
     severity: "success",
   });
   return (

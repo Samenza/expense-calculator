@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 const AddSubscriber = () => {
   const { id } = useParams();
-  const [data, setData] = useState("");
+  const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const { setNotification } = useNotificationContext();
 
@@ -15,13 +15,21 @@ const AddSubscriber = () => {
       setNotification({
         show: true,
       });
-      setData();
+      setName("");
+    });
+  }
+  function patchSubscriber(value) {
+    api.put(`subscriber/${id}`, { name: value }).then((res) => {
+      setNotification({
+        show: true,
+        message: "با موفقیت ویرایش شد!",
+      });
     });
   }
 
   function validation(onSuccess) {
-    if (data) {
-      onSuccess(data);
+    if (name) {
+      onSuccess(name);
       setError(false);
     } else {
       setError(true);
@@ -29,11 +37,11 @@ const AddSubscriber = () => {
   }
 
   function getSubscriber() {
-    api.get(`subscriber/${id}`).then((res) => setData(res.data.name));
+    api.get(`subscriber/${id}`).then((res) => setName(res.data.name));
   }
   useEffect(() => {
     getSubscriber();
-    setData();
+    setName();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -72,18 +80,18 @@ const AddSubscriber = () => {
         </Typography>
         <TextField
           error={error}
-          onChange={(e) => setData(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
           sx={{ width: "90%" }}
           label="نام"
           variant="outlined"
           helperText={error && "لطفا نام را وارد کنید!"}
-          value={data}
+          value={name}
         />
 
         <Button
           sx={{ width: "90%", padding: "14px", backgroundColor: "#108299" }}
           variant="contained"
-          onClick={(e) => validation(postSubscriber)}
+          onClick={(e) => validation(id ? patchSubscriber : postSubscriber)}
         >
           افزودن
         </Button>

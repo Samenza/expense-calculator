@@ -22,7 +22,7 @@ const AlertNotification = () => {
         variant="outlined"
         severity={notification.severity}
       >
-        {notification.message ?? "با موفقیت اضافه شد!"}
+        {notification.message}
       </Alert>
     </Snackbar>
   );
