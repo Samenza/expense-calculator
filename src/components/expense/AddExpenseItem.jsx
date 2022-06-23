@@ -41,7 +41,7 @@ const AddExpenseItem = () => {
 
   function postFormData(formData) {
     api.post("expense", formData).then((res) => {
-      setNotification({ show: true });
+      setNotification((prev) => ({ ...prev, show: true }));
       setFormData({ title: "", price: "", payerId: "" });
     });
   }

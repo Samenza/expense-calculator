@@ -33,7 +33,10 @@ const SubscriberDetail = () => {
   }, []);
 
   function deleteAll() {
-    api.delete(`expense/delete-all-subscriber-expenses/${id}`);
+    api.delete(`expense/delete-all-subscriber-expenses/${id}`).finally(() => {
+      setOpenModal(false);
+      getSubscriberDetailList();
+    });
   }
 
   return (

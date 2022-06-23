@@ -4,7 +4,7 @@ import { api } from "../../configs/axiosConfigs";
 import { useNotificationContext } from "../../context/NotificationContextProvider";
 import { useParams } from "react-router-dom";
 
-const AddSubscriber = () => {
+const AddSubscriber = ({ editMode }) => {
   const { id } = useParams();
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
@@ -54,29 +54,28 @@ const AddSubscriber = () => {
       }}
     >
       <Stack
-        sx={{
+        sx={(theme) => ({
           width: "80%",
           alignItems: "center",
           gap: "2rem",
           border: "1px solid #77D8BE",
           padding: "7vh 1rem",
           borderRadius: "10px",
-        }}
-        bgcolor={"greenLight.main"}
+          backgroundColor: theme.palette.secondaryLight.main,
+        })}
       >
         <Typography
           variant="body1"
-          sx={{
+          sx={(theme) => ({
             width: "90%",
-            backgroundColor: "#C7FCEC",
+            backgroundColor: theme.palette.primary.main,
             padding: "14px 13px",
             boxSizing: "border-box",
             borderRadius: "4px",
             textAlign: "center",
-          }}
+          })}
         >
-          {" "}
-          افزودن پرداخت کننده:
+          {editMode ? " ویرایش پرداخت کننده:" : "افزودن پرداخت کننده:"}
         </Typography>
         <TextField
           error={error}
@@ -89,8 +88,9 @@ const AddSubscriber = () => {
         />
 
         <Button
-          sx={{ width: "90%", padding: "14px", backgroundColor: "#108299" }}
+          sx={{ width: "90%", padding: "14px" }}
           variant="contained"
+          color="greenLight"
           onClick={(e) => validation(id ? patchSubscriber : postSubscriber)}
         >
           افزودن

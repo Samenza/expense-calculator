@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import ConfirmationModal from "../ConfirmationModal";
 
 const ExpenseListItems = ({
-  item: { payer, title, price, id },
+  item: { payer, title, price, id, persianDate },
   getListData,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -47,11 +47,17 @@ const ExpenseListItems = ({
       }}
     >
       <Stack sx={{ gap: "0.5rem", padding: "10px", width: "100%" }}>
-        {payer?.name && (
+        <Flex sx={{ justifyContent: "space-between" }}>
           <Typography sx={{ color: palette.darkBlue.main }} variant="h6">
             {title}
           </Typography>
-        )}
+          <Typography
+            sx={{ color: palette.darkBlue.main, pr: "2.5rem" }}
+            variant="h6"
+          >
+            {persianDate}
+          </Typography>
+        </Flex>
         <Box
           sx={{
             display: "flex",
@@ -59,14 +65,6 @@ const ExpenseListItems = ({
             alignItems: "center",
           }}
         >
-          {!payer?.name && (
-            <Typography
-              sx={{ color: palette.secondaryLight.contrastText }}
-              variant="h6"
-            >
-              {title}
-            </Typography>
-          )}
           {payer?.name && (
             <Typography
               sx={{
@@ -128,8 +126,8 @@ const ExpenseListItems = ({
             >
               <IconButton
                 sx={{
-                  backgroundColor: palette.secondary.main,
-                  color: palette.darkBlue.main,
+                  backgroundColor: palette.greenLight.main,
+                  color: palette.secondaryLight.main,
                   borderRadius: "5px",
                 }}
                 onClick={() => {
@@ -145,7 +143,7 @@ const ExpenseListItems = ({
                   setAnchorEl();
                 }}
                 sx={(theme) => ({
-                  color: palette.darkBlue.main,
+                  color: palette.secondaryLight.main,
                   backgroundColor: theme.palette.error.main,
                   borderRadius: "5px",
                 })}
