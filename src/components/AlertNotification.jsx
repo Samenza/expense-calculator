@@ -1,5 +1,5 @@
 import React from "react";
-import { Snackbar, Alert } from "@mui/material";
+import { Snackbar, Alert, Typography } from "@mui/material";
 import { useNotificationContext } from "../context/NotificationContextProvider";
 
 const AlertNotification = () => {
@@ -22,7 +22,9 @@ const AlertNotification = () => {
         variant="outlined"
         severity={notification.severity}
       >
-        {notification.message}
+        <Typography variant="h6" sx={{ color: "#d8d8d8" }}>
+          {notification.message}
+        </Typography>
       </Alert>
     </Snackbar>
   );
