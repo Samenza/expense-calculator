@@ -39,7 +39,7 @@ let theme = createTheme({
 
     darkBlue: { main: "#1D3557" },
     lightBlue: { main: "#457B9D" },
-    greenLight: { main: "#4f9480" },
+    greenLight: { main: "#4f9480", contrastText: "#fff" },
     error: {
       main: "#E63946",
     },

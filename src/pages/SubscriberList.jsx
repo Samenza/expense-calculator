@@ -4,14 +4,21 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SubscriberItem from "../components/subscriber/SubscriberItem";
 import { api } from "../configs/axiosConfigs";
+import useLoading from "./../hooks/useLoading";
 
 const SubscriberList = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const { setLoading, closeLoadingByTimer, loading, loadingIcon } =
+    useLoading();
   function getData() {
-    api.get("subscriber").then((res) => {
-      setData(res.data);
-    });
+    setLoading(true);
+    api
+      .get("subscriber")
+      .then((res) => {
+        setData(res.data);
+      })
+      .finally(() => closeLoadingByTimer());
   }
   useEffect(() => {
     getData();
@@ -27,16 +34,18 @@ const SubscriberList = () => {
           overflowY: "auto",
         }}
       >
-        {data.map((subscriber, index) => {
-          return (
-            <SubscriberItem
-              key={subscriber.id}
-              item={subscriber}
-              index={index + 1}
-              getListData={getData}
-            />
-          );
-        })}
+        {!loading
+          ? data.map((subscriber, index) => {
+              return (
+                <SubscriberItem
+                  key={subscriber.id}
+                  item={subscriber}
+                  index={index + 1}
+                  getListData={getData}
+                />
+              );
+            })
+          : loadingIcon}
       </Stack>
       <Zoom
         in={true}
